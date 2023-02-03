@@ -13,8 +13,9 @@ class Placeholder(nn.Module):
 
     def replace(self, module):
         T = self.model
-        assert T.mapping() == module.mapping(
-        ), f"Mapping Type Mismatch: {T.mapping()} <-> {module.mapping()}"
+        if isinstance(self.model, TorchMapping):
+            assert T.mapping() == module.mapping(
+            ), f"Mapping Type Mismatch: {T.mapping()} <-> {module.mapping()}"
         self.model = module(*self.__args, **self.__kwargs)
 
     def forward(self, *args):

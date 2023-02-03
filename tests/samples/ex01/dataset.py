@@ -9,10 +9,11 @@ class SampleDataset(module.Dataset):
     def __init__(self, path):
         super().__init__()
         print(f"The path of this dataset is {path}.")
-        points = list(range(600))
+        N = 2000
+        points = list(range(N))
         self.df = pd.DataFrame({
             "x": [float(point) for point in points],
-            "y": [str(int(point / 200)) for point in points]
+            "y": [str(int(point / (N / 2))) for point in points]
         })
 
 

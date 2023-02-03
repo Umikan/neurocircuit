@@ -15,7 +15,7 @@ setuptools.setup(
     python_requires=">=3.0",
     install_requires=[
         "torch >= 1.6.0",
-        "pyyaml",
+        "pandas",
         "einops"
     ]
 )

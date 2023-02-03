@@ -7,6 +7,7 @@ class WithoutActivation(TorchMapping):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(1, dim),
+            nn.Linear(dim, dim),
             nn.Linear(dim, n_classes)
         )
 
@@ -27,7 +28,9 @@ class WithActivation(TorchMapping):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(1, dim),
-            nn.ReLU(),
+            Placeholder(nn.ReLU),
+            nn.Linear(dim, dim),
+            Placeholder(nn.ReLU),
             nn.Linear(dim, n_classes)
         )
 
@@ -41,6 +44,7 @@ class Net(TorchMapping):
         self.net = Placeholder(WithActivation, dim, n_classes)
 
     def forward(self, x):
+        x = x.unsqueeze(1)
         return self.net(x)
 
     @classmethod

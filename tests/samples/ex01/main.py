@@ -12,11 +12,12 @@ class TestModule(unittest.TestCase):
         path = "testpath"
         dataset = Dataset(path)
         block = Block(dataset, dataset.predict_function)
-        params = {"dim": 3}
+        params = {"dim": 512}
         model = block.fit_model(Model, **params)
+        model.replace(nn.ReLU, nn.Sigmoid)
         trainer = TrainClassifier(model=model,
                                   datablock=block(),
                                   loss=nn.CrossEntropyLoss(),
-                                  bs=2,
+                                  bs=64,
                                   cb_func=None)
-        trainer.train(n_epoch=1)
+        trainer.train(n_epoch=10)
