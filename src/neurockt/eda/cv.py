@@ -67,4 +67,4 @@ class ChooseBestModel:
             i = np.argmin(self.best_valid)
 
         print(f"Best model: {i}")
-        return self.load_model(i)
+        return self.load_model(self.get_name(i))
