@@ -16,6 +16,9 @@ setuptools.setup(
     install_requires=[
         "torch >= 1.6.0",
         "pandas",
-        "einops"
+        "einops",
+        "scikit-learn",
+        "contextvars",
+        "numpy"
     ]
 )
