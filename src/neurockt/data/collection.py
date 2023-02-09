@@ -13,6 +13,9 @@ class Category(Dataset):
     def get_vocab(self):
         return list(self.encoder.classes_)
     
+    def num_classes(self):
+        return len(list(self.encoder.classes_))
+    
     def __len__(self):
         return len(self.labels)
     
@@ -22,7 +25,7 @@ class Multiclass(Category):
         super().__init__(df, LabelEncoder())
 
     def __getitem__(self, idx):
-        return torch.LongTensor([self.labels[idx]])
+        return torch.tensor(self.labels[idx])
 
 
 class Multilabel(Category):
@@ -45,4 +48,4 @@ class Image(Dataset):
     def __getitem__(self, idx):
         img_path = self.path[idx] 
         image = read_image(img_path)
-        return self.transform(image) if self.transform else image
+        return self.transform(image).float() if self.transform else image.float()

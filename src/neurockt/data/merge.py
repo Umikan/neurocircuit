@@ -8,7 +8,7 @@ class Merge(Dataset):
         for dset in self.datasets[1:]:
             assert self.length == len(dset), "To merge datasets, the count of samples has to be the same."
 
-        self.indices = indices
+        self.indices = list(range((self.length))) if indices is None else indices
 
     def __len__(self):
         return len(self.indices)
