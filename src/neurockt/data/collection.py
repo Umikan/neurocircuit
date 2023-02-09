@@ -22,7 +22,7 @@ class Multiclass(Category):
         super().__init__(df, LabelEncoder())
 
     def __getitem__(self, idx):
-        return torch.Tensor([self.labels[idx]])
+        return torch.LongTensor([self.labels[idx]])
 
 
 class Multilabel(Category):
@@ -30,9 +30,10 @@ class Multilabel(Category):
         super().__init__(df, MultiLabelBinarizer())
         
     def __getitem__(self, idx):
-        return torch.Tensor(self.labels[idx])
+        return torch.LongTensor(self.labels[idx])
     
 
+# with albumentation library
 class Image(Dataset):
     def __init__(self, df, transform=None):
         self.path = list(df)
