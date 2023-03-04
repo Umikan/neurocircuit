@@ -4,8 +4,8 @@ import setuptools
 setuptools.setup(
     name="neurockt",
     version="0.1.0",
-    author="Tatsuya Masuko",
-    description="Tiny fastai wrappers for deep learning everywhere.",
+    author="Umikan Koaze",
+    description="A tiny collection of Pytorch utilities.",
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     classifiers=[
