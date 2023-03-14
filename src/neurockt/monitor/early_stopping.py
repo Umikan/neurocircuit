@@ -1,7 +1,3 @@
-from logging import getLogger
-logger = getLogger(__name__)
-
-
 class EarlyStopping:
     def __init__(self, patience=10, mode="max"):
         self.patience = patience
@@ -24,7 +20,7 @@ class EarlyStopping:
         if more_acc or less_err:
             self.prev = current
             self.count = 0
-            logger.info(f"Better model found at epoch {self.n_epoch}: {current}")
+            print(f"Better model found at epoch {self.n_epoch}: {current}")
             for hook in self.hooks:
                 hook()
         else:
@@ -32,6 +28,6 @@ class EarlyStopping:
 
         has_exceeded = self.count > self.patience
         if has_exceeded:
-            logger.info("EarlyStopping: Exceeded the maximum count of patience")
+            print("EarlyStopping: Exceeded the maximum count of patience")
 
         return has_exceeded
