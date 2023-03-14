@@ -46,6 +46,8 @@ class Image(Dataset):
         return len(self.path)
 
     def __getitem__(self, idx):
-        img_path = self.path[idx] 
-        image = read_image(img_path)
-        return self.transform(image).float() / 255 if self.transform else image.float() / 255
+        img_path = self.path[idx]
+
+        if type(img_path) == str:
+            image = read_image(img_path)
+        return self.transform(image.float()) if self.transform else image.float()
