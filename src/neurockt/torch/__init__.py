@@ -1,2 +1,2 @@
 from .forward import forward
-from .batch import Batch
+from .stack import Stack
