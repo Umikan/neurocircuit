@@ -15,4 +15,9 @@ class Merge(Dataset):
 
     def __getitem__(self, idx):
         idx = self.indices[idx]
-        return tuple(dset[idx] for dset in self.datasets)
+        items = []
+        for dset in self.datasets:
+            item = dset[idx]
+            item = item if type(item) == tuple else (item,)
+            items.extend(item)
+        return tuple(items)
